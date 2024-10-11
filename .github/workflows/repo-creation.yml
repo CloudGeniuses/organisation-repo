@@ -1,0 +1,51 @@
+name: Create and Manage Repos
+
+on:
+    push:
+      branches:
+        - main  # Only trigger on pushes to the main branch
+      paths:
+        - 'repos.json'  # Only trigger when repos.json is modified
+    workflow_dispatch:  # Allows manual triggering of the workflow
+    
+jobs:
+  manage-repos:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v3
+      with:
+        python-version: '3.x'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install requests PyNaCl
+
+    - name: Run repo management script
+      env:
+        GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        ORGNAME: ${{ vars.ORGNAME }}
+        AZURE_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+        AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+        AZURE_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+        RG_URL: ${{ secrets.RG_URL }}
+        RG_PASSWORD: ${{ secrets.RG_PASSWORD }}
+        RG_USERNAME: ${{ secrets.RG_USERNAME }}        
+
+      run: |
+        python manage_repos.py
+
+    - name: Commit updated JSON file
+      env:
+        GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+        ORGNAME: ${{ vars.ORGNAME }}
+      run: |
+        git config --global user.name "github-actions[bot]-Anil"
+        git config --global user.email "anil@metamorf.ai"
+        git add repos.json
+        git commit -m "[gh-bot] Update repo creation statuses"
+        git push
