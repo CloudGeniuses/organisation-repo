@@ -11,12 +11,12 @@ ORG_NAME = os.getenv("ORGNAME")
 GITHUB_TOKEN = os.getenv("GH_TOKEN")
 
 # Retrieve other environment variables corresponding to secrets
-AZURE_SUBSCRIPTION_ID = os.getenv("AZURE_SUBSCRIPTION_ID")
-AZURE_TENANT_ID = os.getenv("AZURE_TENANT_ID")
-AZURE_CLIENT_ID = os.getenv("AZURE_CLIENT_ID")
-RG_URL = os.getenv("RG_URL")
-RG_PASSWORD = os.getenv("RG_PASSWORD")
-RG_USERNAME = os.getenv("RG_USERNAME")
+# AZURE_SUBSCRIPTION_ID = os.getenv("AZURE_SUBSCRIPTION_ID")
+# AZURE_TENANT_ID = os.getenv("AZURE_TENANT_ID")
+# AZURE_CLIENT_ID = os.getenv("AZURE_CLIENT_ID")
+# RG_URL = os.getenv("RG_URL")
+# RG_PASSWORD = os.getenv("RG_PASSWORD")
+# RG_USERNAME = os.getenv("RG_USERNAME")
 
 HEADERS = {
     "Authorization": f"token {GITHUB_TOKEN}",
@@ -118,12 +118,12 @@ def main():
 
                 secrets = {
                     "SECRET_KEY": "example_secret_value",
-                    "AZURE_SUBSCRIPTION_ID": AZURE_SUBSCRIPTION_ID,
-                    "AZURE_TENANT_ID": AZURE_TENANT_ID,
-                    "AZURE_CLIENT_ID": AZURE_CLIENT_ID,
-                    "RG_URL": RG_URL,
-                    "RG_PASSWORD": RG_PASSWORD,
-                    "RG_USERNAME": RG_USERNAME,
+                    # "AZURE_SUBSCRIPTION_ID": AZURE_SUBSCRIPTION_ID,
+                    # "AZURE_TENANT_ID": AZURE_TENANT_ID,
+                    # "AZURE_CLIENT_ID": AZURE_CLIENT_ID,
+                    # "RG_URL": RG_URL,
+                    # "RG_PASSWORD": RG_PASSWORD,
+                    # "RG_USERNAME": RG_USERNAME,
                     "GH_TOKEN": GITHUB_TOKEN    
                 }
                 set_repo_secrets(repo["repo-name"], secrets)
