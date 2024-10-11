@@ -29,12 +29,12 @@ jobs:
       env:
         GH_TOKEN: ${{ secrets.GH_TOKEN }}
         ORGNAME: ${{ vars.ORGNAME }}
-        AZURE_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-        AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
-        AZURE_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
-        RG_URL: ${{ secrets.RG_URL }}
-        RG_PASSWORD: ${{ secrets.RG_PASSWORD }}
-        RG_USERNAME: ${{ secrets.RG_USERNAME }}        
+        # AZURE_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+        # AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+        # AZURE_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+        # RG_URL: ${{ secrets.RG_URL }}
+        # RG_PASSWORD: ${{ secrets.RG_PASSWORD }}
+        # RG_USERNAME: ${{ secrets.RG_USERNAME }}        
 
       run: |
         python manage_repos.py
